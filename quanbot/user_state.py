@@ -39,6 +39,7 @@ class UserState(object):
         pass
 
     def greet(self, message):
+        self.reset()
         self.set_next_behavior(self.read_location)
         self.replies.ask_where()
 

@@ -18,7 +18,7 @@ class Quan(object):
         candidates = [qd for qd in cls.get_all_qds()
                       if cls.matches(qd, location)]
         shuffle(candidates)
-        return candidates[0:2]
+        return candidates[0:3]
 
     @classmethod
     def matches(cls, qd, location):
