@@ -14,4 +14,5 @@ def handler_message(sender, message):
             recipient_id=sender,
             replies=replies,
             )
+    print(user_state)
     user_state.run_behavior(message)
