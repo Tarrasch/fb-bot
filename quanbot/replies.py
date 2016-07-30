@@ -27,7 +27,7 @@ class Replies(object):
         self.reply_msg(text)
         results = quanbot.quan.Quan.search(location)
         if results:
-            elements = map(self._quan_element, results)
+            elements = list(map(self._quan_element, results))
             self._send_carousel(elements)
             return True
         else:
