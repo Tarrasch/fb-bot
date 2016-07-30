@@ -40,7 +40,7 @@ class Replies(object):
     def _quan_element(self, qd):
         web_button = elements.WebUrlButton(
                 title='xem trên Foody.vn',
-                url=qd['URL']
+                url=qd['URL'],
                 )
         postback_button = elements.PostbackButton(
                 title="Không " + qd['maindish'],
@@ -48,11 +48,11 @@ class Replies(object):
                 )
         element = elements.Element(
                 title=qd['Name'],
-                item_url='https://petersapparel.parseapp.com',
+                item_url=qd['URL'],
                 image_url=qd['Pic'],
                 subtitle=qd['dish'],
                 buttons=[
-                    web_button,
+                    # web_button,
                     postback_button,
                 ],
                 )
