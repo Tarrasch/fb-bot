@@ -31,6 +31,8 @@ You shall see the url for your local server. Something like: `https://6cecffb8.n
 * Once the callback is verified, subscribe the app to one of your pages. 
 * Also generate a page access token for that page. 
 *  Edit `server.py` and update the `ACCESS_TOKEN` with the new token we got.
-
 	
+#### Heroku additions
 
+ * See commited files
+ * `heroku config:set FB_PAGE_ACCESS_TOKEN=$PAGE_ACCESS_TOKEN`

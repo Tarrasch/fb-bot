@@ -1,0 +1,8 @@
+{
+  "name": "Quanbot",
+  "description": "Stupid chatbot",
+  "image": "heroku/python",
+  "repository": "https://github.com/Tarrasch/fb-bot",
+  "keywords": ["python", "messengerapi" ],
+  "addons": []
+}
