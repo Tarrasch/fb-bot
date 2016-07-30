@@ -13,13 +13,20 @@ class Replies(object):
     def recipient(self):
         return messages.Recipient(recipient_id=self.recipient_id)
 
-    def _reply_msg(self, text):
+    def reply_msg(self, text):
         message = messages.Message(text=text)
         request = messages.MessageRequest(self.recipient, message)
         self.messenger.send(request)
 
     def ask_where(self):
-        self._reply_msg('Xin chào! Bạn muốn ăn ở đâu?')
+        self.reply_msg('Xin chào! Bạn muốn ăn ở đâu?')
+
+    def give_suggestions(self, location):
+        text = 'kết quả từ {district} nè'.format(district=location.district)
+        self.reply_msg(text)
+
+    def failed_read_location(self):
+        self.reply_msg('Vui lòng viết lại')
 
     def reply_button_template(self):
         web_button = elements.WebUrlButton(

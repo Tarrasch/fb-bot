@@ -1,3 +1,6 @@
+import quanbot.location
+
+
 class UserState(object):
 
     static_userids = {}
@@ -20,7 +23,7 @@ class UserState(object):
         return
 
     def reset(self):
-        self.place_filters = {}
+        self.location = quanbot.location.Location()
         self.set_next_behavior(self.greet)
 
     def state_is_empty(self):
@@ -31,6 +34,7 @@ class UserState(object):
         pass
 
     def run_behavior(self, message):
+        message = message.strip()
         self._next_behavior(message)
         pass
 
@@ -39,4 +43,9 @@ class UserState(object):
         self.replies.ask_where()
 
     def read_location(self, message):
-        return self.greet(message)
+        new_location = self.location.try_update(message)
+        if new_location:
+            self.location = new_location
+            self.replies.give_suggestions(self.location)
+        else:
+            self.replies.failed_read_location()
