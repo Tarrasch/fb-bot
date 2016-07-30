@@ -10,10 +10,8 @@ def handler_message(sender, message):
             access_token=ACCESS_TOKEN,
             recipient_id=sender,
             )
-    user_state = quanbot.user_state.UserState.getIfNew(sender, replies)
+    user_state = quanbot.user_state.UserState.getIfNew(
+            recipient_id=sender,
+            replies=replies,
+            )
     user_state.run_behavior(message)
-    # if user_state.state_is_empty():
-    #     replies.ask_where()
-    #     user_state.next_behavior()
-    # replies.reply_button_template()
-    # replies.reply_generic_template()

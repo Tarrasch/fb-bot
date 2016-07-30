@@ -32,6 +32,7 @@ def handle_incoming_messages():
         data = request.json
         sender = data['entry'][0]['messaging'][0]['sender']['id']
         message = data['entry'][0]['messaging'][0]['message']['text']
+        print(sender)
         quanbot.handler.handler_message(sender, message)
     except Exception as ex:
         print(ex)

@@ -19,15 +19,13 @@ class UserState(object):
         return cls.static_userids[recipient_id]
 
     def __init__(self, recipient_id):
+        self.recipient_id = recipient_id
         self.reset()
         return
 
     def reset(self):
         self.location = quanbot.location.Location()
         self.set_next_behavior(self.greet)
-
-    def state_is_empty(self):
-        return bool(self.place_filters)
 
     def set_next_behavior(self, behavior):
         self._next_behavior = behavior
