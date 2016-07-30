@@ -50,7 +50,7 @@ class Replies(object):
                     inner_template, inner_template2
                     ]
                 )
-        attachment = attachments.TemplateAttachment(template=inner_template)
+        attachment = attachments.TemplateAttachment(template=outer_template)
 
         message = messages.Message(attachment=attachment)
         request = messages.MessageRequest(self.recipient, message)
