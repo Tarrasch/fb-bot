@@ -70,15 +70,11 @@ def handle_verification():
 
 @app.route('/webhook', methods=['POST'])
 def handle_incoming_messages():
-    try:
-        data = request.json
-        pprint(data)
-        sender = data['entry'][0]['messaging'][0]['sender']['id']
-        message = data['entry'][0]['messaging'][0]['message']['text']
-        reply(sender, message)
-        reply_test(sender)
-    except Exception as ex:
-        print(ex)
+    data = request.json
+    sender = data['entry'][0]['messaging'][0]['sender']['id']
+    message = data['entry'][0]['messaging'][0]['message']['text']
+    reply(sender, message)
+    reply_test(sender)
     return "ok"
 
 
