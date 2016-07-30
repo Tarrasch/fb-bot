@@ -1,32 +1,30 @@
 from flask import Flask, request
 import os
-from pprint import pprint
 import requests
-
-
-
 
 app = Flask(__name__)
 
-ACCESS_TOKEN = os.environ.get('FB_PAGE_ACCESS_TOKEN', 'this_should_be_configured')
+ACCESS_TOKEN = os.environ.get('FB_PAGE_ACCESS_TOKEN', 'conf_this')
 VERIFY_TOKEN = "my_voice_is_my_password_verify_me"
+
 
 def reply(user_id, msg):
     data = {
         "recipient": {"id": user_id},
         "message": {"text": "reply: " + msg}
     }
-    resp = requests.post("https://graph.facebook.com/v2.6/me/messages?access_token=" + ACCESS_TOKEN, json=data)
+    location = ("https://graph.facebook.com/v2.6/me/messages?access_token="
+                + ACCESS_TOKEN)
+    resp = requests.post(location, json=data)
     print(resp.content)
 
 
 def reply_test(user_id):
-    from messengerbot import MessengerClient, messages, attachments, templates, elements
+    from messengerbot import MessengerClient, messages
+    from messengerbot import attachments, templates, elements
 
     # Manully initialise client
     messenger = MessengerClient(access_token=ACCESS_TOKEN)
-
-
     recipient = messages.Recipient(recipient_id=user_id)
 
     # Send text message
@@ -43,17 +41,24 @@ def reply_test(user_id):
             title='Start chatting',
             payload='USER_DEFINED_PAYLOAD'
             )
-    template = templates.ButtonTemplate(
-            text='What do you want to do next?',
+    inner_template = templates.ButtonTemplate(
+            text='What do you want eat?',
             buttons=[
                 web_button, postback_button
                 ]
             )
-    attachment = attachments.TemplateAttachment(template=template)
+    outer_template = templates.ButtonTemplate(
+            text='What do you want eat?',
+            buttons=[
+                inner_template, inner_template
+                ]
+            )
+    attachment = attachments.TemplateAttachment(template=outer_template)
 
     message = messages.Message(attachment=attachment)
     request = messages.MessageRequest(recipient, message)
     messenger.send(request)
+
 
 @app.route('/')
 def hello_world():
