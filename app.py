@@ -30,11 +30,11 @@ def handle_verification():
 def handle_incoming_messages():
     try:
         data = request.json
-        messages = data['entry'][0]['messaging']
-        for message in messages:
-            sender = message['sender']['id']
-            message = message.get('message', {}).get('text')
-            payload = message.get('postback', {}).get('payload')
+        entries = data['entry'][0]['messaging']
+        for entry in entries:
+            sender = entry['sender']['id']
+            message = entry.get('message', {}).get('text')
+            payload = entry.get('postback', {}).get('payload')
             simplify = message or payload
             quanbot.handler.handler_message(sender, simplify)
     except Exception as ex:
