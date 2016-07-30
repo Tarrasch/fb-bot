@@ -4,7 +4,7 @@ import requests
 
 app = Flask(__name__)
 
-ACCESS_TOKEN = os.environ['FB_PAGE_ACCESS_TOKEN']
+ACCESS_TOKEN = os.environ.get('FB_PAGE_ACCESS_TOKEN', 'this_should_be_configured')
 VERIFY_TOKEN = "my_voice_is_my_password_verify_me"
 
 def reply(user_id, msg):
@@ -35,7 +35,6 @@ def handle_incoming_messages():
     sender = data['entry'][0]['messaging'][0]['sender']['id']
     message = data['entry'][0]['messaging'][0]['message']['text']
     reply(sender, message)
-
     return "ok"
 
 

@@ -1,2 +1,9 @@
 Flask>=0.11.1
 requests>=2.10.0
+
+# From https://github.com/zachwill/flask_heroku/blob/master/requirements.txt
+# ----------------------
+# Production Server
+# ----------------------
+gevent
+gunicorn
