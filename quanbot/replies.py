@@ -44,7 +44,7 @@ class Replies(object):
                 )
         postback_button = elements.PostbackButton(
                 title="Không " + qd['maindish'],
-                payload='TODO'
+                payload="Không " + qd['maindish'],
                 )
         element = elements.Element(
                 title=qd['Name'],

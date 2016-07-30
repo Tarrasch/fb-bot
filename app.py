@@ -36,7 +36,8 @@ def handle_incoming_messages():
             message = entry.get('message', {}).get('text')
             payload = entry.get('postback', {}).get('payload')
             simplify = message or payload
-            quanbot.handler.handler_message(sender, simplify)
+            if simplify:
+                quanbot.handler.handler_message(sender, simplify)
     except Exception as ex:
         print(ex)
     return "ok"
