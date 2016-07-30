@@ -6,6 +6,7 @@ class UserState(object):
     def getIfNew(cls, recipient_id, replies):
         obj = cls.getIfNew_(recipient_id)
         obj.replies = replies
+        return obj
 
     @classmethod
     def getIfNew_(cls, recipient_id):
