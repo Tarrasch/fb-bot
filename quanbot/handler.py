@@ -10,3 +10,4 @@ def handler_message(sender, message):
             recipient_id=sender,
             )
     replies.reply_greeting()
+    replies.reply_advanced()

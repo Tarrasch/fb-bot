@@ -13,8 +13,8 @@ class Replies(object):
     def recipient(self):
         return messages.Recipient(recipient_id=self.recipient_id)
 
-    def _reply_msg(self, msg):
-        message = messages.Message(text='Hello World')
+    def _reply_msg(self, text):
+        message = messages.Message(text=text)
         request = messages.MessageRequest(self.recipient, message)
         self.messenger.send(request)
 
