@@ -36,7 +36,7 @@ class UserState(object):
 
     def greet(self, message):
         self.set_next_behavior(self.read_location)
-        self.ask_where()
+        self.replies.ask_where()
 
     def read_location(self, message):
         return self.greet(message)
