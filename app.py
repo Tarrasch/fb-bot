@@ -22,7 +22,7 @@ def hello_world():
     return 'Hello, World! https://www.facebook.com/Quanbot-1658289714492002/'
 
 
-@app.route('/webhook/', methods=['GET'])
+@app.route('/webhook', methods=['GET'])
 def handle_verification():
     if request.args['hub.verify_token'] == VERIFY_TOKEN:
         return request.args['hub.challenge']
@@ -30,13 +30,16 @@ def handle_verification():
         return "Invalid verification token"
 
 
-@app.route('/webhook/', methods=['POST'])
+@app.route('/webhook', methods=['POST'])
 def handle_incoming_messages():
-    data = request.json
-    pprint(data)
-    sender = data['entry'][0]['messaging'][0]['sender']['id']
-    message = data['entry'][0]['messaging'][0]['message']['text']
-    reply(sender, message)
+    try:
+        data = request.json
+        pprint(data)
+        sender = data['entry'][0]['messaging'][0]['sender']['id']
+        message = data['entry'][0]['messaging'][0]['message']['text']
+        reply(sender, message)
+    except Exception as ex:
+        print(ex)
     return "ok"
 
 
