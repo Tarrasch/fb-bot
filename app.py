@@ -54,8 +54,7 @@ def reply_test(user_id):
                 ]
             )
     outer_template = templates.GenericTemplate(
-            text='What do you want eat?',
-            buttons=[
+            elements=[
                 inner_template, inner_template2
                 ]
             )
