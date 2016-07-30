@@ -10,4 +10,5 @@ def handler_message(sender, message):
             recipient_id=sender,
             )
     replies.reply_greeting()
-    replies.reply_advanced()
+    replies.reply_button_template()
+    replies.reply_generic_template()

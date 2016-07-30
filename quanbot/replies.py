@@ -21,10 +21,7 @@ class Replies(object):
     def reply_greeting(self):
         self._reply_msg('Xin chào! Bạn muốn ăn ở đâu?')
 
-    def reply_advanced(self):
-
-
-        # Send button template
+    def reply_button_template(self):
         web_button = elements.WebUrlButton(
                 title='Show website',
                 url='https://petersapparel.parseapp.com'
@@ -33,24 +30,46 @@ class Replies(object):
                 title='Start chatting',
                 payload='USER_DEFINED_PAYLOAD'
                 )
-        inner_template = templates.ButtonTemplate(
+        button_template = templates.ButtonTemplate(
                 text='What do you want eat?',
                 buttons=[
                     web_button, postback_button
                     ]
                 )
-        inner_template2 = templates.ButtonTemplate(
-                text='What do you want to drink?',
+        attachment = attachments.TemplateAttachment(template=button_template)
+
+        message = messages.Message(attachment=attachment)
+        request = messages.MessageRequest(self.recipient, message)
+        self.messenger.send(request)
+
+    def reply_generic_template(self):
+        web_button = elements.WebUrlButton(
+                title='Show website',
+                url='https://petersapparel.parseapp.com'
+                )
+        postback_button = elements.PostbackButton(
+                title='Start chatting',
+                payload='USER_DEFINED_PAYLOAD'
+                )
+        element = elements.Element(
+                title='Hi world',
+                item_url='https://petersapparel.parseapp.com',
+                image_url='https://media.foody.vn/res/g23/229195/prof/s640x400/foody-mobile-yen-sushi-nk-mb-jpg-805-636030069462797351.jpg',
+                subtitle='Hải sản',
                 buttons=[
-                    web_button, postback_button
-                    ]
+                    web_button,
+                    postback_button,
+                ],
                 )
-        outer_template = templates.GenericTemplate(
+
+        generic_template = templates.GenericTemplate(
                 elements=[
-                    inner_template, inner_template2
+                    element,
+                    element,
+                    element,
                     ]
                 )
-        attachment = attachments.TemplateAttachment(template=outer_template)
+        attachment = attachments.TemplateAttachment(template=generic_template)
 
         message = messages.Message(attachment=attachment)
         request = messages.MessageRequest(self.recipient, message)
