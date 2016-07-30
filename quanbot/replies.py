@@ -18,7 +18,7 @@ class Replies(object):
         request = messages.MessageRequest(self.recipient, message)
         self.messenger.send(request)
 
-    def reply_greeting(self):
+    def ask_where(self):
         self._reply_msg('Xin chào! Bạn muốn ăn ở đâu?')
 
     def reply_button_template(self):
