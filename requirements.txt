@@ -1,5 +1,6 @@
 Flask>=0.11.1
 requests>=2.10.0
+messengerbot
 
 # From https://github.com/zachwill/flask_heroku/blob/master/requirements.txt
 # ----------------------
