@@ -25,6 +25,7 @@ class UserState(object):
 
     def reset(self):
         self.location = quanbot.location.Location()
+        self.negations = []
         self.set_next_behavior(self.greet)
 
     def set_next_behavior(self, behavior):
@@ -45,7 +46,7 @@ class UserState(object):
         new_location = self.location.try_update(message)
         if new_location:
             self.location = new_location
-            success = self.replies.give_suggestions(self.location)
+            success = self._suggestions()
             if success:
                 self.set_next_behavior(self.suggest_and_iterate)
             else:
@@ -55,8 +56,22 @@ class UserState(object):
             self.set_next_behavior(self.read_location)
 
     def suggest_and_iterate(self, message):
-        success = self.replies.give_suggestions(self.location)
+        mnegation = self._find_negation(message)
+        if mnegation:
+            self.negations.append(mnegation)
+        success = self._suggestions()
         if success:
             self.set_next_behavior(self.suggest_and_iterate)
         else:
             self.set_next_behavior(self.greet)
+
+    def _suggestions(self):
+        return self.replies.give_suggestions(
+                self.location,
+                self.negations
+                )
+
+    def _find_negation(self, message):
+        if message[0:6] == 'Không ':
+            return message[6:]
+        return None

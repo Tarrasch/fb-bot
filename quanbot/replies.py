@@ -22,10 +22,10 @@ class Replies(object):
     def ask_where(self):
         self.reply_msg('Xin chào! Bạn muốn ăn ở đâu?')
 
-    def give_suggestions(self, location):
+    def give_suggestions(self, location, negations):
         text = 'kết quả từ {district} nè'.format(district=location.district)
         self.reply_msg(text)
-        results = quanbot.quan.Quan.search(location)
+        results = quanbot.quan.Quan.search(location, negations)
         if results:
             elements = list(map(self._quan_element, results))
             self._send_carousel(elements)
