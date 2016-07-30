@@ -57,7 +57,7 @@ def reply_test(user_id):
 
     message = messages.Message(attachment=attachment)
     request = messages.MessageRequest(recipient, message)
-    messenger.send(request)
+    #messenger.send(request)
 
 
 @app.route('/')
