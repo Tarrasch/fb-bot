@@ -47,17 +47,23 @@ def reply_test(user_id):
                 web_button, postback_button
                 ]
             )
-    outer_template = templates.ButtonTemplate(
+    inner_template2 = templates.ButtonTemplate(
+            text='What do you want to drink?',
+            buttons=[
+                web_button, postback_button
+                ]
+            )
+    outer_template = templates.GenericTemplate(
             text='What do you want eat?',
             buttons=[
-                inner_template, inner_template
+                inner_template, inner_template2
                 ]
             )
     attachment = attachments.TemplateAttachment(template=outer_template)
 
     message = messages.Message(attachment=attachment)
     request = messages.MessageRequest(recipient, message)
-    #messenger.send(request)
+    messenger.send(request)
 
 
 @app.route('/')
