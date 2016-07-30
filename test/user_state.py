@@ -26,12 +26,22 @@ class TestUserState(unittest.TestCase):
         self.replies.ask_where.assert_called_once_with()
         location = Location(district='Quận 5')
         self.replies.give_suggestions.assert_called_once_with(location)
-        # self.assertTrue(any([msg for msg in calls if "Quận 5" in msg]))
 
     def test_misunderstands_garbage(self):
         self.user_state.run_behavior("Hi bot!")
         self.user_state.run_behavior("Stockholm")
         self.replies.failed_read_location.assert_called_once_with()
+
+    def test_understands_q5_after_fail(self):
+        self.user_state.run_behavior("Chào")
+        self.user_state.run_behavior("Dsj")
+        self.replies.failed_read_location.assert_called_once_with()
+        self.user_state.run_behavior("djjdu")
+        self.replies.failed_read_location.assert_has_calls(2*[[]])
+        self.user_state.run_behavior("q5")
+        location = Location(district='Quận 5')
+        self.replies.failed_read_location.assert_has_calls(2*[[]])
+        self.replies.give_suggestions.assert_called_once_with(location)
 
 if __name__ == '__main__':
     unittest.main()
