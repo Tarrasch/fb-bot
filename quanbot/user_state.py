@@ -50,13 +50,14 @@ class UserState(object):
             if success:
                 self.set_next_behavior(self.suggest_and_iterate)
             else:
-                # TODO: startover
-                pass
+                self.set_next_behavior(self.greet)
         else:
             self.replies.failed_read_location()
             self.set_next_behavior(self.read_location)
 
     def suggest_and_iterate(self, message):
-        # TODO: handle input
         success = self.replies.give_suggestions(self.location)
-        self.set_next_behavior(self.suggest_and_iterate)
+        if success:
+            self.set_next_behavior(self.suggest_and_iterate)
+        else:
+            self.set_next_behavior(self.greet)

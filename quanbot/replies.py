@@ -31,6 +31,7 @@ class Replies(object):
             self._send_carousel(elements)
             return True
         else:
+            self.reply_msg("Không tìm thành công thì restart")
             return False
 
     def failed_read_location(self):
