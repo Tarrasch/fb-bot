@@ -1,5 +1,6 @@
 from messengerbot import MessengerClient, messages
 from messengerbot import attachments, templates, elements
+import quanbot.quan
 
 
 class Replies(object):
@@ -24,57 +25,42 @@ class Replies(object):
     def give_suggestions(self, location):
         text = 'kết quả từ {district} nè'.format(district=location.district)
         self.reply_msg(text)
+        results = quanbot.quan.Quan.search(location)
+        if results:
+            elements = map(self._quan_element, results)
+            self._send_carousel(elements)
+            return True
+        else:
+            return False
 
     def failed_read_location(self):
         self.reply_msg('Vui lòng viết lại')
 
-    def reply_button_template(self):
+    def _quan_element(self, qd):
         web_button = elements.WebUrlButton(
-                title='Show website',
-                url='https://petersapparel.parseapp.com'
+                title='xem trên Foody.vn',
+                url=qd['URL']
                 )
         postback_button = elements.PostbackButton(
-                title='Start chatting',
-                payload='USER_DEFINED_PAYLOAD'
-                )
-        button_template = templates.ButtonTemplate(
-                text='What do you want eat?',
-                buttons=[
-                    web_button, postback_button
-                    ]
-                )
-        attachment = attachments.TemplateAttachment(template=button_template)
-
-        message = messages.Message(attachment=attachment)
-        request = messages.MessageRequest(self.recipient, message)
-        self.messenger.send(request)
-
-    def reply_generic_template(self):
-        web_button = elements.WebUrlButton(
-                title='Show website',
-                url='https://petersapparel.parseapp.com'
-                )
-        postback_button = elements.PostbackButton(
-                title='Start chatting',
-                payload='USER_DEFINED_PAYLOAD'
+                title="Không " + qd['maindish'],
+                payload='TODO'
                 )
         element = elements.Element(
-                title='Hi world',
+                title=qd['Name'],
                 item_url='https://petersapparel.parseapp.com',
-                image_url='https://media.foody.vn/res/g23/229195/prof/s640x400/foody-mobile-yen-sushi-nk-mb-jpg-805-636030069462797351.jpg',
-                subtitle='Hải sản',
+                image_url=qd['Pic'],
+                subtitle=qd['dish'],
                 buttons=[
                     web_button,
                     postback_button,
                 ],
                 )
 
+        return element
+
+    def _send_carousel(self, elements):
         generic_template = templates.GenericTemplate(
-                elements=[
-                    element,
-                    element,
-                    element,
-                    ]
+                elements=elements
                 )
         attachment = attachments.TemplateAttachment(template=generic_template)
 

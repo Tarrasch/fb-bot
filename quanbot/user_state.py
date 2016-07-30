@@ -46,6 +46,17 @@ class UserState(object):
         new_location = self.location.try_update(message)
         if new_location:
             self.location = new_location
-            self.replies.give_suggestions(self.location)
+            success = self.replies.give_suggestions(self.location)
+            if success:
+                self.set_next_behavior(self.suggest_and_iterate)
+            else:
+                # TODO: startover
+                pass
         else:
             self.replies.failed_read_location()
+            self.set_next_behavior(self.read_location)
+
+    def suggest_and_iterate(self, message):
+        # TODO: handle input
+        success = self.replies.give_suggestions(self.location)
+        self.set_next_behavior(self.suggest_and_iterate)
