@@ -30,7 +30,7 @@ class TestUserState(unittest.TestCase):
         self.replies.failed_read_location.assert_called_once_with()
 
     def test_understands_q5_after_fail(self):
-        self.user_state.run_behavior("Chào")
+        self.user_state.run_behavior("blahblah")
         self.user_state.run_behavior("Dsj")
         self.replies.failed_read_location.assert_called_once_with()
         self.user_state.run_behavior("djjdu")
@@ -38,6 +38,18 @@ class TestUserState(unittest.TestCase):
         self.user_state.run_behavior("q5")
         self.replies.failed_read_location.assert_has_calls(2*[[]])
         self.replies.give_suggestions.assert_called_once_with('Quận 5', [])
+
+    def test_can_restart(self):
+        self.user_state.run_behavior("Hi bot!")
+        self.replies.ask_where.assert_called_once_with()
+        self.user_state.run_behavior("q5")
+        self.replies.ask_where.assert_called_once_with()
+        self.user_state.run_behavior("chao")
+        self.replies.say_restarting.assert_has_calls(1*[[]])
+        self.replies.ask_where.assert_has_calls(2*[[]])
+        self.user_state.run_behavior("chao")
+        self.replies.say_restarting.assert_has_calls(2*[[]])
+        self.replies.ask_where.assert_has_calls(3*[[]])
 
 if __name__ == '__main__':
     unittest.main()

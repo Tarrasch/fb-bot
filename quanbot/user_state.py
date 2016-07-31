@@ -1,3 +1,18 @@
+import functools
+
+
+def restartable(old_method):
+    @functools.wraps(old_method)
+    def new_method(self, message):
+        if message in ["chao", "chào", "Chào", "Chao"]:
+            self.replies.say_restarting()
+            self.replies.ask_where()
+            self.reset()
+        else:
+            return old_method(self, message)
+    return new_method
+
+
 class UserState(object):
 
     def __init__(self, replies):
@@ -19,11 +34,13 @@ class UserState(object):
         getattr(self, self._next_behavior)(message)
         pass
 
+    @restartable
     def greet(self, message):
         self.reset()
         self.set_next_behavior(self.read_location)
         self.replies.ask_where()
 
+    @restartable
     def read_location(self, message):
         new_location = self._parse_district(message)
         if new_location:
@@ -37,6 +54,7 @@ class UserState(object):
             self.replies.failed_read_location()
             self.set_next_behavior(self.read_location)
 
+    @restartable
     def suggest_and_iterate(self, message):
         mnegation = self._find_negation(message)
         if mnegation:

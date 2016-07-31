@@ -37,6 +37,9 @@ class Replies(object):
     def failed_read_location(self):
         self.reply_msg('Vui lòng viết lại')
 
+    def say_restarting(self):
+        self.reply_msg('Rồi, hãy thử một lần nũa nha')
+
     def _quan_element(self, qd):
         web_button = elements.WebUrlButton(
                 title='xem trên Foody.vn',
