@@ -22,5 +22,5 @@ class Quan(object):
 
     @classmethod
     def matches(cls, qd, location, negations):
-        return (location.district in qd['address']
+        return (location in qd['address']
                 and qd['maindish'] not in negations)
