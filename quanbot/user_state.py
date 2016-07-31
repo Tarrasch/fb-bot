@@ -3,25 +3,6 @@ import quanbot.location
 
 class UserState(object):
 
-    static_userids = {}
-    static_userid = None
-
-    @classmethod
-    def getIfNew(cls, recipient_id, replies):
-        obj = cls.getIfNew_(recipient_id)
-        obj.replies = replies
-        return obj
-
-    @classmethod
-    def getIfNew_(cls, recipient_id):
-        if not cls.static_userid:
-            cls.static_userid = UserState(recipient_id)
-        return cls.static_userid
-        # if recipient_id in cls.static_userids:
-        #     return cls.static_userids[recipient_id]
-        # cls.static_userids[recipient_id] = UserState(recipient_id)
-        # return cls.static_userids[recipient_id]
-
     def __init__(self, recipient_id):
         self.recipient_id = recipient_id
         self.reset()
