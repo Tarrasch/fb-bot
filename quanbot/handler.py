@@ -20,7 +20,6 @@ def handler_message(user, message):
                         ]:
         if field in user.json:
             setattr(user_state, field, user.json[field])
-    print(user_state)
     user_state.run_behavior(message)
     return user_state
 
