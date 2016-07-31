@@ -10,12 +10,19 @@ def handler_message(user, message):
             access_token=ACCESS_TOKEN,
             recipient_id=user.recipient_id,
             )
-    user_state = quanbot.user_state.UserState.getIfNew(
-            recipient_id=user.recipient_id,
+    user_state = quanbot.user_state.UserState(
             replies=replies,
             )
+    for field in [
+                        'location',
+                        'negations',
+                        '_next_behavior',
+                        ]:
+        if field in user.json:
+            setattr(user_state, field, user.json[field])
     print(user_state)
     user_state.run_behavior(message)
+    return user_state
 
 
 # def get_pq_conn():

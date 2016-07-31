@@ -1,25 +1,22 @@
-import quanbot.location
-
-
 class UserState(object):
 
-    def __init__(self, recipient_id):
-        self.recipient_id = recipient_id
+    def __init__(self, replies):
+        self.replies = replies
         self.reset()
         return
 
     def reset(self):
-        self.location = quanbot.location.Location()
+        self.location = ''
         self.negations = []
         self.set_next_behavior(self.greet)
 
     def set_next_behavior(self, behavior):
-        self._next_behavior = behavior
+        self._next_behavior = behavior.__name__
         pass
 
     def run_behavior(self, message):
         message = message.strip()
-        self._next_behavior(message)
+        getattr(self, self._next_behavior)(message)
         pass
 
     def greet(self, message):
@@ -28,7 +25,7 @@ class UserState(object):
         self.replies.ask_where()
 
     def read_location(self, message):
-        new_location = self.location.try_update(message)
+        new_location = self._parse_district(message)
         if new_location:
             self.location = new_location
             success = self._suggestions()
@@ -60,3 +57,12 @@ class UserState(object):
         if message[0:6] == 'Không ':
             return message[6:]
         return None
+
+    @staticmethod
+    def _parse_district(message):
+        if message == 'q5':
+            return 'Quận 5'
+        elif message == 'q3':
+            return 'Quận 3'
+        return None
+

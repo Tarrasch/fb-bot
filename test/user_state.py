@@ -1,7 +1,6 @@
 import unittest
 from unittest.mock import Mock
 import quanbot.user_state
-from quanbot.location import Location
 
 
 class TestUserState(unittest.TestCase):
@@ -10,8 +9,7 @@ class TestUserState(unittest.TestCase):
         quanbot.user_state.UserState.static_userids = {}
         self.replies = Mock()
         self.sender = '1234'
-        self.user_state = quanbot.user_state.UserState.getIfNew(
-                self.sender,
+        self.user_state = quanbot.user_state.UserState(
                 self.replies,
                 )
 
@@ -24,8 +22,7 @@ class TestUserState(unittest.TestCase):
         self.replies.ask_where.assert_called_once_with()
         self.user_state.run_behavior("q5")
         self.replies.ask_where.assert_called_once_with()
-        location = Location(district='Quận 5')
-        self.replies.give_suggestions.assert_called_once_with(location)
+        self.replies.give_suggestions.assert_called_once_with('Quận 5', [])
 
     def test_misunderstands_garbage(self):
         self.user_state.run_behavior("Hi bot!")
@@ -39,9 +36,8 @@ class TestUserState(unittest.TestCase):
         self.user_state.run_behavior("djjdu")
         self.replies.failed_read_location.assert_has_calls(2*[[]])
         self.user_state.run_behavior("q5")
-        location = Location(district='Quận 5')
         self.replies.failed_read_location.assert_has_calls(2*[[]])
-        self.replies.give_suggestions.assert_called_once_with(location)
+        self.replies.give_suggestions.assert_called_once_with('Quận 5', [])
 
 if __name__ == '__main__':
     unittest.main()
