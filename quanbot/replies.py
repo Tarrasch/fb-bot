@@ -23,7 +23,7 @@ class Replies(object):
         self.reply_msg('Xin chào! Bạn muốn ăn ở đâu?')
 
     def give_suggestions(self, location, negations):
-        text = 'kết quả từ {district} nè'.format(district=location.district)
+        text = 'kết quả từ {district} nè'.format(district=location)
         self.reply_msg(text)
         results = quanbot.quan.Quan.search(location, negations)
         if results:
