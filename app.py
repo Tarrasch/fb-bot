@@ -1,8 +1,11 @@
 from flask import Flask, request
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
+import os
+
 import quanbot.handler
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
 VERIFY_TOKEN = "my_voice_is_my_password_verify_me"
