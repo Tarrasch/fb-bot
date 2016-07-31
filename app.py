@@ -83,6 +83,7 @@ def getuser(recipient_id):
 
     user = User('TODO')
     user.json = dict(recipient_id=recipient_id)
+    return user
 
 
 def saveuser(user):
