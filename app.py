@@ -1,8 +1,10 @@
 from flask import Flask, request
+from flask.ext.sqlalchemy import SQLAlchemy
 import requests
 import quanbot.handler
 
 app = Flask(__name__)
+db = SQLAlchemy(app)
 
 VERIFY_TOKEN = "my_voice_is_my_password_verify_me"
 
