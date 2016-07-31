@@ -255,6 +255,71 @@
       "dish": "Thịt Gà Thịt Bò Hải sản Lẩu Rượu vang Thức uống Bia Nước ngọt"
     },
     {
+      "Name": "Phở Hòa",
+      "URL": "http://www.foody.vn/ho-chi-minh/pho-hoa",
+      "Pic": "http://media.foody.vn/res/g1/1361/prof/s480x300/foody-mobile-f2-jpg-471-635773887027409246.jpg",
+      "address": "260C Pasteur, P. 8, Quận 3, TP. HCM",
+      "prize": {
+        "min": "40000",
+        "max": "55000"
+      },
+      "score": "7",
+      "maindish": "Phở",
+      "dish": "Phở"
+    },
+    {
+      "Name": "Phở Hòa",
+      "URL": "http://www.foody.vn/ho-chi-minh/pho-hoa",
+      "Pic": "http://media.foody.vn/res/g1/1361/prof/s480x300/foody-mobile-f2-jpg-471-635773887027409246.jpg",
+      "address": "260C Pasteur, P. 8, Quận 3, TP. HCM",
+      "prize": {
+        "min": "40000",
+        "max": "55000"
+      },
+      "score": "7",
+      "maindish": "Phở",
+      "dish": "Phở"
+    },
+    {
+      "Name": "Seoul Garden",
+      "URL": "http://www.foody.vn/ho-chi-minh/seoul-garden-nam-ky-khoi-nghia",
+      "Pic": "http://media.foody.vn/res/g1/47/prof/s480x300/foody-mobile-wvmixk30-jpg-989-635841274683311555.jpg",
+      "address": "208 Nam Kỳ Khởi Nghĩa, P. 6, Quận 3, TP. HCM",
+      "prize": {
+        "min": "250000",
+        "max": "400000"
+      },
+      "score": "7.5",
+      "maindish": "Nướng",
+      "dish": "Bò Gà Heo"
+    },
+    {
+      "Name": "Mì cay Nasin",
+      "URL": "http://www.foody.vn/ho-chi-minh/mi-cay-nasin",
+      "Pic": "http://media.foody.vn/res/g23/226096/prof/s480x300/foody-mobile-hmb-s-jpg-411-635956247750107005.jpg",
+      "address": "1075 Hoàng Sa, P. 11, Quận 3, TP. HCM",
+      "prize": {
+        "min": "30000",
+        "max": "45000"
+      },
+      "score": "8",
+      "maindish": "Mì",
+      "dish": "Mì"
+    },
+    {
+      "Name": "Cháo Vịt 102",
+      "URL": "http://www.foody.vn/ho-chi-minh/chao-vit-102",
+      "Pic": "http://media.foody.vn/res/g15/144017/prof/s480x300/foody-mobile-x1-jpg-605-635762914058027750.jpg",
+      "address": "61 Võ Thị Sáu, P. 6, Quận 3, TP. HCMc",
+      "prize": {
+        "min": "50000",
+        "max": "200000"
+      },
+      "score": "6.5",
+      "maindish": "Cháo",
+      "dish": "Cháo Vịt"
+    },
+    {
       "Name": "Út Liên - Ốc Hải Sản",
       "URL": "http://www.foody.vn/ho-chi-minh/ut-lien-oc-hai-san",
       "Pic": "http://media.foody.vn/res/g1/4541/prof/s480x300/foody-mobile-uidoj2zh-jpg-460-636009828761023294.jpg",
