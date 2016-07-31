@@ -8,6 +8,7 @@ def restartable(old_method):
             self.replies.say_restarting()
             self.replies.ask_where()
             self.reset()
+            self.set_next_behavior(self.read_location)
         else:
             return old_method(self, message)
     return new_method

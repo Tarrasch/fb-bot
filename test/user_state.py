@@ -51,5 +51,11 @@ class TestUserState(unittest.TestCase):
         self.replies.say_restarting.assert_has_calls(2*[[]])
         self.replies.ask_where.assert_has_calls(3*[[]])
 
+    def test_listen_after_restart(self):
+        self.user_state.run_behavior("Chào")
+        self.replies.ask_where.assert_called_once_with()
+        self.user_state.run_behavior("q5")
+        self.replies.give_suggestions.assert_called_once_with('Quận 5', [])
+
 if __name__ == '__main__':
     unittest.main()
