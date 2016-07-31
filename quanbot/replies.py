@@ -38,7 +38,7 @@ class Replies(object):
         self.reply_msg('Vui lòng viết lại')
 
     def say_restarting(self):
-        self.reply_msg('Rồi, hãy thử một lần nũa nha')
+        self.reply_msg('Rồi, hãy thử một lần nữa nha')
 
     def _quan_element(self, qd):
         web_button = elements.WebUrlButton(
