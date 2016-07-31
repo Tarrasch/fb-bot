@@ -268,19 +268,6 @@
       "dish": "Phở"
     },
     {
-      "Name": "Phở Hòa",
-      "URL": "http://www.foody.vn/ho-chi-minh/pho-hoa",
-      "Pic": "http://media.foody.vn/res/g1/1361/prof/s480x300/foody-mobile-f2-jpg-471-635773887027409246.jpg",
-      "address": "260C Pasteur, P. 8, Quận 3, TP. HCM",
-      "prize": {
-        "min": "40000",
-        "max": "55000"
-      },
-      "score": "7",
-      "maindish": "Phở",
-      "dish": "Phở"
-    },
-    {
       "Name": "Seoul Garden",
       "URL": "http://www.foody.vn/ho-chi-minh/seoul-garden-nam-ky-khoi-nghia",
       "Pic": "http://media.foody.vn/res/g1/47/prof/s480x300/foody-mobile-wvmixk30-jpg-989-635841274683311555.jpg",
