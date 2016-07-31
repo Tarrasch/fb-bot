@@ -53,14 +53,13 @@ def handle_incoming_messages():
             if simplify:
                 user = getuser(sender)
                 user_state = quanbot.handler.handler_message(user, simplify)
-                new_user = User('fu')
-                new_user.json = dict(
+                user.json = dict(
                         recipient_id=sender,
                         location=user_state.location,
                         negations=user_state.negations,
                         _next_behavior=user_state._next_behavior
                         )
-                saveuser(new_user)
+                saveuser(user)
 
     except Exception as ex:
         print(ex)
