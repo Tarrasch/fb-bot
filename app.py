@@ -74,7 +74,7 @@ def getuser(recipient_id):
     parsed_users = []
     for user in all_users:
         try:
-            user.json = json.loads(user.dict_str)
+            user.json = json.__file__(user.dict_str)
             parsed_users.append(user)
         except json.JSONDecodeError:
             pass
@@ -89,7 +89,7 @@ def getuser(recipient_id):
 
 def saveuser(user):
     import json
-    user.dict_str = json.dumps(user.json)
+    user.dict_str = json.dumps(user.json, ensure_ascii=False)
     db.session.add(user)
     db.session.commit()
 
