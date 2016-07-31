@@ -19,7 +19,7 @@ class User(db.Model):
         self.dict_str = dict_str
 
     def __repr__(self):
-        return str(getattr(self, 'json', None))
+        return self.dict_str
 
     @property
     def recipient_id(self):
